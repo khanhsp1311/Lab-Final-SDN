@@ -1,0 +1,84 @@
+[
+    {
+        "user": "6537a9e53eb05eeca9fec83a",
+        "products": [
+            {
+                "_id": "6537915e8b53bc2cb510bc5d",
+                "name": "Syrup - Kahlua Chocolate",
+                "price": 846,
+                "discountPercentage": 50,
+                "quantity": 2,
+                "total": 846
+            }
+        ]
+       
+    },
+    {
+        "discountTotal": 18,
+        "totalProduct": 3,
+        "totalQuantity": 20,
+        "totalPrice": 3838,
+        "product": [
+            {
+                "_id": "6537915e8b53bc2cb510bc5d",
+                "name": "Syrup - Kahlua Chocolate",
+                "price": 846,
+                "discountPercentage": 50,
+                "quantity": 2,
+                "total": 846
+            }
+        ],
+        "user": "653783868b53bc2cb510bbbe"
+    },
+    {
+        "discountTotal": 12,
+        "totalProduct": 3,
+        "totalQuantity": 16,
+        "totalPrice": 8574,
+        "products": [
+            {
+                "_id": "6537915e8b53bc2cb510bc5d",
+                "name": "Syrup - Kahlua Chocolate",
+                "price": 846,
+                "discountPercentage": 50,
+                "quantity": 2,
+                "total": 846
+            }
+        ],
+        "user": "653783868b53bc2cb510bbbe"
+    },
+    {
+        "discountTotal": 20,
+        "totalProduct": 4,
+        "totalQuantity": 18,
+        "totalPrice": 3529,
+        "product": [
+            {
+                "_id": "6537915e8b53bc2cb510bc5d",
+                "name": "Syrup - Kahlua Chocolate",
+                "price": 846,
+                "discountPercentage": 50,
+                "quantity": 2,
+                "total": 846
+            }
+        ],
+        "user": "653783868b53bc2cb510bbbe"
+    },
+    {
+        "discountTotal": 14,
+        "totalProduct": 1,
+        "totalQuantity": 10,
+        "totalPrice": 969,
+        "product": [
+            {
+                "_id": "6537915e8b53bc2cb510bc5d",
+                "name": "Syrup - Kahlua Chocolate",
+                "price": 846,
+                "discountPercentage": 50,
+                "quantity": 2,
+                "total": 846
+            }
+        ],
+        "user": "653783868b53bc2cb510bbbe"
+    }
+]
