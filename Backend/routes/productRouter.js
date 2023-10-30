@@ -6,6 +6,7 @@ const productRouter = express.Router()
 
 
 productRouter.get('/', productController.findAll)
+
 productRouter.post('/', productController.createOne)
 productRouter.get('/:id', productController.findOne)
 productRouter.get('/:id/comment', productController.findComment)

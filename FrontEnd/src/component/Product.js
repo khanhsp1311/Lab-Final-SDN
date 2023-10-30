@@ -10,7 +10,7 @@ const Product = () => {
     const [productComment, setProductComment] = useState([]);
     const [cart, setCart] = useState(0);
     const [selectedBrand, setSelectedBrand] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
+
     const [modalShow, setModalShow] = React.useState(false);
     const navigate = useNavigate();
     useEffect(() => {
@@ -102,12 +102,11 @@ const Product = () => {
 
                 </div>
 
+
                 <div className="d-flex justify-content-between">
 
 
-                    <Form.Group className="col-md-6" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder="Search Product" />
-                    </Form.Group>
+
 
                     <Button variant="primary" onClick={btnClickAdd}>Add new</Button>
                     <Button variant="primary" onClick={btnClickCart}>My Cart</Button>
@@ -116,7 +115,7 @@ const Product = () => {
                 <Table striped bordered hover style={{ marginTop: '20px' }}>
                     <thead>
                         <tr>
-                            <th>ID</th>
+
                             <th>Title</th>
                             <th>Description</th>
                             <th>Price</th>
@@ -130,21 +129,20 @@ const Product = () => {
                     <tbody>
                         {filteredProducts.map((product) => (
                             <tr key={product._id}>
-                                <td>{product.id}</td>
-                                <td>{product.title}</td>
+
+                                <td>{product.name}</td>
                                 <td>{product.description}</td>
                                 <td>{product.price}</td>
                                 <td>{product.discountPercentage}</td>
                                 <td>{product.stock}</td>
                                 <td>{product.brand}</td>
                                 {/* {console.log('1234', product.thumbnail)} */}
-                                <td><img src={product.thumbnail} alt="Product Thumbnail" /></td>
+                                <td><img style={{ width: '200px', height: '200px' }} src={product.thumbnail} alt="Product Thumbnail" /></td>
                                 <td>
                                     {/* <Button variant="primary" onClick={() => btnClickUpdate(product.id)}>Update</Button> */}
                                     <Button variant="primary" onClick={() => btnClickDelete(product._id)}> Delete </Button>
                                     <Button variant="primary" onClick={() => viewComment(product._id)}> View Comment </Button>
                                     <Button variant="primary" onClick={() => addToCart(product)}>Add to cart </Button>
-
                                 </td>
                             </tr>
                         ))}

@@ -42,27 +42,8 @@ async function createOne(req, res, next) {
     try {
         console.log(req.body);
         const product = req.body.products;
-        if (product) {
-            // lấy mảng sản phẩm tính; discountTotal: Number,
-            // totalProduct: Number, = tổng các sản phẩm cộng lại trong mảng
-            // totalQuantity: Number, = đếm số lượng
-            // totalPrice: Number, = tp*tq - discount
-            const totalProduct = product.reduce((sum, element) => sum + element.total, 0);
-            const totalQuantity = product.length;
-            let totalPrice = totalQuantity * totalProduct;
-            if (totalPrice > 100) {
-                totalPrice -= 100;
-            } else {
-                totalPrice -= 50;
-            }
-            const cart = {
-                totalProduct: totalProduct,
-                totalQuantity: totalQuantity,
-                totalPrice: totalPrice
-            }
+        console.log("tôi test");
 
-            return await Cart.create({ ...cart, ...req.body });
-        }
         return await Cart.create({ ...req.body });
     } catch (error) {
         throw new Error(error.message)
@@ -122,23 +103,29 @@ async function updateCartAdd(req, res, next) {
     try {
         // console.log(req.body);
         const product = req.body.products;
-        // nếu nó ấn add to cart mà trùng id với product thì mình update lại số lượng của nó
+        // nếu nó ấn add to cart mà trùng id với produc                                                                                 t thì mình update lại số lượng của nó
         // update lại kiểu: products{quantity: quantity + 1}
         const idP = req.body.products['_id'];
         const cart = await Cart.findById(id).exec();
         const checkProduct = cart.products.find(e => e._id == idP);
         let quantity = 1;
-        console.log(checkProduct);
-        console.log('1234', quantity);
+        const { price, discountPercentage } = req.body.products;
         if (checkProduct) {
             // cũ thì update
             quantity = checkProduct.quantity + 1;
             console.log(quantity);
 
-            return await Cart.updateOne({ $and: [{ _id: id, 'products._id': idP }] }, { $set: { 'products.$.quantity': quantity } })
+            return await Cart.updateOne(
+                { _id: id, 'products._id': idP },
+                {
+                    $set: {
+                        'products.$.quantity': quantity,
+                        'products.$.total': quantity * price * discountPercentage
+                    }
+                })
         }
 
-        return await Cart.updateOne({ _id: id }, { $push: { products: { ...req.body.products, quantity: quantity } } })
+        return await Cart.updateOne({ _id: id }, { $push: { products: { ...req.body.products, quantity: quantity, total: quantity * price * discountPercentage } } })
 
     } catch (error) {
         throw new Error(error.message)

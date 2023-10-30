@@ -71,12 +71,13 @@ async function createOne(req, res, next) {
         console.log(req.body);
         if (req.body.images) { image = await Image.insertMany(req.body.images); }
         if (req.body.comments) { comment = await Comment.insertMany(req.body.comments); }
-        const thumbnail = req.file.filename;
+        // const thumbnail = req.file.filename;
+        // console.log(thumbnail);
         return await Product.create({
             ...req.body,
             images: image,
             comments: comment,
-            thumbnail: `public/asset/${thumbnail}`,
+
         });
     } catch (error) {
         throw new Error(error.message)

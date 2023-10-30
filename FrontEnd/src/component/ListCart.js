@@ -27,10 +27,6 @@ const Product = () => {
                 <div className="d-flex justify-content-between">
 
 
-                    <Form.Group className="col-md-6" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder="Search Product" />
-                    </Form.Group>
-
                 </div>
                 <Table striped bordered hover style={{ marginTop: '20px' }}>
                     <thead>

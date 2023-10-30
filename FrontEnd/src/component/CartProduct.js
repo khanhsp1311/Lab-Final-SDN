@@ -68,10 +68,7 @@ const CartProduct = () => {
                             <td>{product.quantity}</td>
 
                             <td>{product.total}</td>
-                            <td>
-                                {/* <Button variant="primary" onClick={() => btnClickUpdate(product.id)}>Update</Button> */}
-                                <Button variant="primary"> Pay </Button>
-                            </td>
+
                         </tr>
                     ))}
                 </tbody>
