@@ -15,6 +15,7 @@ const CreateProduct = () => {
     const [image, setImage] = useState('');
     const [imageList, setImageList] = useState([])
     const [imageListMulti, setImageListMulti] = useState([])
+
     // const [addImage, setAddImage] = useState(1);
     const navigate = useNavigate();
     const { id } = useParams();
@@ -83,6 +84,7 @@ const CreateProduct = () => {
                 console.log(imageListMulti);
                 if (imageListMulti.length == 0) return;
                 // path
+                let sum = 0;
                 for (let i = 0; i < imageListMulti.length; i++) {
 
                     const imageRef2 = ref(storage, `imagesDes/ ${imageListMulti[i].name + v4()}`)
@@ -93,10 +95,13 @@ const CreateProduct = () => {
                                 url: url,
                                 path: imageRef2['_location']['path_'],
                             })
+                            sum += 1;
                             setImageList((prev) => [...prev, url])
+                            console.log(1 + 1 + 1);
                             // chạy đến lần thứ cuối
-                            if (imageListMulti.length - 1 === i) {
-                                let imgDT = imageDes;
+                            if (imageListMulti.length === sum) {
+                                console.log(2);
+
                                 let body = {
                                     name: document.querySelector('.titleRef').value,
                                     description: document.querySelector('.descriptionRef').value,

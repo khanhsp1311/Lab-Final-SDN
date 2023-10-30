@@ -52,7 +52,16 @@ async function findComment(req, res, next) {
                     from: "comments",
                     localField: "comments._id",
                     foreignField: "_id",
-                    as: "comments"
+                    as: "comments",
+
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "comments.user", // Assuming there is a "userId" field in comments
+                    foreignField: "_id",
+                    as: "users"
                 }
             }
         ]);

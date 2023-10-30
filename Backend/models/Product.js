@@ -22,7 +22,7 @@ const Product = mongoose.model("Product", new Schema({
             ref: 'Comment', // Referencing the 'User' model
         },
     }],
-
+    status: String,
 
 },
 

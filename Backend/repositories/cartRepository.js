@@ -1,4 +1,5 @@
 import Cart from "../models/Cart.js";
+import Product from "../models/Product.js";
 
 // Get all Carts
 async function findAll(req, res) {
@@ -63,7 +64,7 @@ async function deleteOne(req, res, next) {
 async function updateOne(req, res, next) {
     const { id } = req.params;
     try {
-        console.log(req.body);
+
         const product = req.body.products;
         product.forEach(product => {
             // Tính toán total
@@ -75,7 +76,7 @@ async function updateOne(req, res, next) {
         // totalPrice: Number, = tp*tq - discount
         const totalProduct = product.reduce((sum, element) => sum + element.total, 0);
         const totalQuantity = product.length;
-        console.log(totalProduct, totalQuantity);
+
         let totalPrice = totalQuantity * totalProduct;
         if (totalPrice > 100) {
             totalPrice = totalPrice * 0.5;
@@ -89,6 +90,13 @@ async function updateOne(req, res, next) {
         }
 
         // cart là các giá trị muốn thay đổi nên ta có thể cho ở dưới để update
+        console.log("Hello world");
+
+        for (let i = 0; i < req.body.products.length; i++) {
+            const { _id, quantity } = req.body.products[i];
+            const product = await Product.findById(_id).exec();
+            await Product.updateOne({ _id: _id }, { stock: product.stock - quantity })
+        }
         req.body.products = [];
         return await Cart.updateOne({ _id: id }, { ...req.body, ...cart })
 

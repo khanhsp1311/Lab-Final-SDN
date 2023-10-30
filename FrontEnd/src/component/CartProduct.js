@@ -6,10 +6,12 @@ import './product.css'
 
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CartProduct = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [productBuy, setProductBuy] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         // Gọi API để lấy danh sách sản phẩm
         const cartID = localStorage.getItem('cartID');
@@ -31,6 +33,7 @@ const CartProduct = () => {
                 showConfirmButton: false,
                 timer: 1500
             })
+            navigate('/product')
         }).catch((error) => {
             // Handle error
             console.log('Error creating product:', error);
