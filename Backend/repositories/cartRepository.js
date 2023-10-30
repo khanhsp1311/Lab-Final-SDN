@@ -103,11 +103,17 @@ async function updateCartAdd(req, res, next) {
     try {
         // console.log(req.body);
         const product = req.body.products;
+        console.log(product);
         // nếu nó ấn add to cart mà trùng id với produc                                                                                 t thì mình update lại số lượng của nó
         // update lại kiểu: products{quantity: quantity + 1}
         const idP = req.body.products['_id'];
         const cart = await Cart.findById(id).exec();
-        const checkProduct = cart.products.find(e => e._id == idP);
+        let checkProduct;
+        if (cart) {
+
+            checkProduct = cart.products.find(e => e?._id == idP);
+        }
+
         let quantity = 1;
         const { price, discountPercentage } = req.body.products;
         if (checkProduct) {
@@ -125,7 +131,7 @@ async function updateCartAdd(req, res, next) {
                 })
         }
 
-        return await Cart.updateOne({ _id: id }, { $push: { products: { ...req.body.products, quantity: quantity, total: quantity * price * discountPercentage } } })
+        return await Cart.updateOne({ _id: id }, { $push: { products: { ...product, quantity: quantity, total: quantity * price * discountPercentage } } })
 
     } catch (error) {
         throw new Error(error.message)

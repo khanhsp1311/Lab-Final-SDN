@@ -115,7 +115,7 @@ async function updateCartAdd(req, res, next) {
                 data: cart
             })
         }
-        return res.status(400).json({
+        return res.status(200).json({
             message: 'cart was pay',
         })
     } catch (error) {
